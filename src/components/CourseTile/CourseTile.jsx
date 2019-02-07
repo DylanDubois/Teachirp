@@ -3,6 +3,7 @@ import "./CourseTile.scss";
 
 const courseTile = props => {
   const { progress } = props;
+
   return (
     <div className="col-md-4 col-sm-12 mb-4" onClick={props.courseSelected}>
       <div className="card bg-dark col-12 course">
