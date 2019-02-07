@@ -1,0 +1,9 @@
+.course-view {
+  height: 100vh !important;
+}
+
+@media (min-width: 500px) {
+  .course-view {
+    height: auto;
+  }
+}

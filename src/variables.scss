@@ -1,0 +1,11 @@
+/* make the customizations */
+// $theme-colors: (
+//   "primary": #ff00d8
+// );
+
+$theme-colors: (
+  "primary": #05c1ff
+);
+
+/* import bootstrap to set changes */
+@import "~bootstrap/scss/bootstrap";

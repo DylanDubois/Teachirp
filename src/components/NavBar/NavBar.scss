@@ -1,0 +1,22 @@
+@import "../../variables.scss";
+a {
+  color: white !important;
+}
+a.active {
+  color: theme-color("primary") !important;
+}
+
+a:hover {
+  color: theme-color("primary") !important;
+  transition: 0.4s ease-in;
+  box-sizing: border-box;
+  background: transparent !important;
+}
+
+.dropdown-item {
+  color: white;
+}
+
+.dropdown-menu {
+  border: 1px solid theme-color("primary");
+}
