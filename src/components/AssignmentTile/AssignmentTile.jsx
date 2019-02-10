@@ -21,7 +21,7 @@ class AssignmentTile extends Component {
     return (
       <div className="col-md-4 col-sm-12 mb-4">
         <div className="card bg-dark col-12 course">
-          <div className="card-header text-primary border-bottom border-white">
+          <div className="card-header text-primary border-bottom border-white header">
             <h5>{this.state.name}</h5>
           </div>
           <div className="card-body">

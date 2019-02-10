@@ -15,9 +15,9 @@ class Home extends Component {
   render() {
     return (
       <Aux>
-        <div className="jumbotron jumbotron-fluid bg-dark text-white border-bottom border-primary">
+        <div className="jumbotron gradient jumbotron-fluid bg-dark text-white border-bottom border-primary">
           <div className="container">
-            <h1 className="display-4">
+            <h1 className="display-4 header">
               Welcome,{" "}
               <span className="text-primary">{this.state.user.name}</span>!
             </h1>
