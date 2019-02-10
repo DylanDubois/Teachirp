@@ -3,9 +3,19 @@
 //   "primary": #ff00d8
 // );
 
+@import url("http://fonts.googleapis.com/css?family=Oswald");
+@import url("http://fonts.googleapis.com/css?family=Lobster");
+
 $theme-colors: (
   "primary": #05c1ff
 );
+
+$primary-font: "Oswald", cursive !important;
+$brand-font: "Lobster", cursive !important;
+
+.header {
+  font-family: $primary-font;
+}
 
 /* import bootstrap to set changes */
 @import "~bootstrap/scss/bootstrap";

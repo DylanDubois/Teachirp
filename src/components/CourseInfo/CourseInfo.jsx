@@ -9,7 +9,9 @@ const courseInfo = props => {
     <div className="col-md-3 col-sm-12 bg-dark pt-5 text-center pt-sm-0">
       {course && (
         <Aux>
-          <h1 className="text-primary display-4 mt-5">{course.courseName}</h1>
+          <h1 className="text-primary display-4 mt-5 header">
+            {course.courseName}
+          </h1>
           <ProgressBarRound progress={course.progress} />
           <button type="button" className="btn btn-outline-primary mt-5">
             Add Assignment

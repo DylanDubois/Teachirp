@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 const navBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-primary">
-      <Link className="navbar-brand text-primary" to="/">
-        Yourse
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-primary header">
+      <Link className="navbar-brand text-primary brand" to="/">
+        Teachirp
       </Link>
       <button
         className="navbar-toggler"
