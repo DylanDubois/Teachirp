@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Aux from "../../hoc/Aux";
+import TaskList from "../TaskList/TaskList";
 
 class AddAssignment extends Component {
   state = {
@@ -10,6 +11,7 @@ class AddAssignment extends Component {
   };
 
   handleNameChange = event => {
+    console.log(event);
     this.setState({ name: event.target.value });
   };
 
@@ -22,16 +24,28 @@ class AddAssignment extends Component {
   };
 
   handleTaskAddition = () => {
-    const task = { name: this.state.tmpTaskName, complete: false };
+    if (!this.state.tmpTaskName) return;
+    const timeId = new Date().getTime() - 1550000000000;
+    const task = { name: this.state.tmpTaskName, complete: false, id: timeId };
     const tasks = this.state.tasks;
+    console.log(tasks);
     tasks.push(task);
     this.setState({ tmpTaskName: "", tasks: tasks });
-    console.log(this.state);
   };
 
   handleSubmit = event => {
     alert("A name was submitted: " + this.state.value);
     event.preventDefault();
+  };
+
+  submitAssignment = () => {
+    this.setState({
+      name: "",
+      estimatedTime: "",
+      tasks: [],
+      tmpTaskName: ""
+    });
+    console.log(this.state);
   };
 
   render() {
@@ -68,6 +82,14 @@ class AddAssignment extends Component {
                   className="close"
                   data-dismiss="modal"
                   aria-label="Close"
+                  onClick={() =>
+                    this.setState({
+                      name: "",
+                      estimatedTime: "",
+                      tasks: [],
+                      tmpTaskName: ""
+                    })
+                  }
                 >
                   <span aria-hidden="true" className="text-white">
                     &times;
@@ -75,8 +97,8 @@ class AddAssignment extends Component {
                 </button>
               </div>
               <div className="modal-body">
-                <form>
-                  <div className="form-group">
+                <form className="row">
+                  <div className="form-group col-12">
                     <input
                       type="text"
                       className="form-control"
@@ -87,7 +109,7 @@ class AddAssignment extends Component {
                       onChange={this.handleNameChange}
                     />
                   </div>
-                  <div className="form-group">
+                  <div className="form-group col-12">
                     <input
                       type="number"
                       className="form-control"
@@ -97,8 +119,8 @@ class AddAssignment extends Component {
                       onChange={this.handleEstimationChange}
                     />
                   </div>
-                  <div className="row ml-1 mr-1">
-                    <div className="form-group col-10 m-0 pl-0">
+                  <div className="col-12 row pr-0">
+                    <div className="form-group col-10 m-0">
                       <input
                         type="text"
                         className="form-control"
@@ -117,11 +139,14 @@ class AddAssignment extends Component {
                     </button>
                   </div>
                 </form>
+                <TaskList tasks={this.state.tasks} />
               </div>
               <div className="modal-footer text-center">
                 <button
                   type="button"
                   className="btn btn-outline-primary header"
+                  data-dismiss="modal"
+                  onClick={this.submitAssignment}
                 >
                   Add
                 </button>
