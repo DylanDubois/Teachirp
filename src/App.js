@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import NavBar from "./components/NavBar/NavBar";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import CourseView from "./pages/CourseView";
-import fire from "./config/Fire";
+import fire, { signInWithGoogle } from "./config/Fire";
 
 class App extends Component {
   state = {
@@ -16,6 +16,7 @@ class App extends Component {
   componentDidMount() {
     this.authListener();
     this.coursesListener();
+    signInWithGoogle();
   }
 
   componentDidUpdate(nextprops) {
