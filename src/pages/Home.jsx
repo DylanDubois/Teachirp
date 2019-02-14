@@ -7,12 +7,22 @@ import { Route } from "react-router-dom";
 class Home extends Component {
   state = {
     user: {
-      name: "Dylan",
-      courses: []
-    }
+      name: "Dylan"
+    },
+    courses: []
   };
 
+  componentDidMount() {
+    this.setState({ courses: this.props.courses });
+  }
+
+  shouldComponentUpdate(next, newp) {
+    if (next.courses !== newp.courses) this.setState({ courses: next.courses });
+    return true;
+  }
+
   render() {
+    console.log("home", this.state.courses);
     return (
       <Aux>
         <div className="jumbotron gradient jumbotron-fluid bg-dark text-white border-bottom border-primary">
@@ -28,7 +38,10 @@ class Home extends Component {
           path="/"
           exact
           render={() => (
-            <CoursesContainer courseSelected={this.props.courseSelected} />
+            <CoursesContainer
+              courseSelected={this.props.courseSelected}
+              courses={this.props.courses}
+            />
           )}
         />
       </Aux>

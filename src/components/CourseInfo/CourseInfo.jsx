@@ -1,9 +1,9 @@
 import React from "react";
 import Aux from "../../hoc/Aux";
 import ProgressBarRound from "../../UI/ProgressBarRound/ProgressBarRound";
+import AddModal from "../AddAssignment/AddAssignment";
 
 const courseInfo = props => {
-  console.log(props.course);
   const course = props.course;
   return (
     <div className="col-md-3 col-sm-12 bg-dark pt-5 text-center pt-sm-0">
@@ -13,9 +13,7 @@ const courseInfo = props => {
             {course.courseName}
           </h1>
           <ProgressBarRound progress={course.progress} />
-          <button type="button" className="btn btn-outline-primary mt-5">
-            Add Assignment
-          </button>
+          <AddModal courseId={course.id} />
         </Aux>
       )}
     </div>
