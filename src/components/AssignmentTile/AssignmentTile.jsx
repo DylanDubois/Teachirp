@@ -10,6 +10,7 @@ class AssignmentTile extends Component {
 
   componentDidMount() {
     const assignment = this.props.assignment;
+    console.log(assignment);
     this.setState({
       name: assignment.name,
       tasks: assignment.tasks,

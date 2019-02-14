@@ -4,37 +4,33 @@ import "./AssignmentsContainer.scss";
 
 class AssignmentsContainer extends Component {
   state = {
-    assignments: [
-      {
-        name: "Homework 1",
-        tasks: ["wow", "hey"],
-        progress: 50,
-        id: 1
-      },
-      {
-        name: "Project 2",
-        tasks: ["wow", "hey", "dude", "wow"],
-        progress: 25,
-        id: 2
-      },
-      {
-        name: "Yeet 3",
-        tasks: ["wow", "hey", "dude", "wow", "lit"],
-        progress: 75,
-        id: 3
-      },
-      {
-        name: "Savage 4",
-        tasks: ["dude", "wow", "lit"],
-        progress: 75,
-        id: 4
-      }
-    ]
+    assignments: []
   };
+
+  componentDidMount() {
+    console.log(this.props);
+  }
+
+  shouldComponentUpdate(next, newp) {
+    if (next.assignments !== newp.assignments)
+      this.setState({ assignments: next.assignments });
+    return true;
+  }
+
   render() {
-    const assignments = this.state.assignments.map(assignment => {
-      return <Assignment assignment={assignment} key={assignment.id} />;
-    });
+    let assignments = <h5>No Assignments</h5>;
+    if (this.props.course.assignments) {
+      assignments = Object.keys(this.props.course.assignments).map(
+        assignment => {
+          return (
+            <Assignment
+              assignment={this.props.course.assignments[assignment]}
+              key={this.props.course.assignments[assignment].id}
+            />
+          );
+        }
+      );
+    }
     return (
       <div className="col-md-9 col-sm-12 p-0">
         <div className="container-fluid">

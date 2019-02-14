@@ -9,11 +9,17 @@ import fire from "./config/Fire";
 class App extends Component {
   state = {
     selectedCourse: null,
-    user: null
+    user: null,
+    courses: null
   };
 
   componentDidMount() {
     this.authListener();
+    this.coursesListener();
+  }
+
+  componentDidUpdate(nextprops) {
+    console.log("update", this.state.courses);
   }
 
   courseSelectedHandler = course => {
@@ -28,6 +34,13 @@ class App extends Component {
     });
   };
 
+  coursesListener = () => {
+    const dbref = fire.database().ref("/courses/");
+    dbref.on("value", snap => {
+      this.setState({ courses: snap.val() });
+    });
+  };
+
   render() {
     return (
       <BrowserRouter>
@@ -36,7 +49,12 @@ class App extends Component {
           <Route
             path="/"
             exact
-            render={() => <Home courseSelected={this.courseSelectedHandler} />}
+            render={() => (
+              <Home
+                courseSelected={this.courseSelectedHandler}
+                courses={this.state.courses}
+              />
+            )}
           />
           {this.state.selectedCourse && (
             <Route

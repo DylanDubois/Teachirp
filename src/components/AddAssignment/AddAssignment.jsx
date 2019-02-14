@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Aux from "../../hoc/Aux";
 import TaskList from "../TaskList/TaskList";
+import axios from "../../config/axios";
+import fire from "../../config/Fire";
 
 class AddAssignment extends Component {
   state = {
@@ -11,7 +13,6 @@ class AddAssignment extends Component {
   };
 
   handleNameChange = event => {
-    console.log(event);
     this.setState({ name: event.target.value });
   };
 
@@ -28,24 +29,31 @@ class AddAssignment extends Component {
     const timeId = new Date().getTime() - 1550000000000;
     const task = { name: this.state.tmpTaskName, complete: false, id: timeId };
     const tasks = this.state.tasks;
-    console.log(tasks);
     tasks.push(task);
     this.setState({ tmpTaskName: "", tasks: tasks });
   };
 
   handleSubmit = event => {
-    alert("A name was submitted: " + this.state.value);
     event.preventDefault();
   };
 
   submitAssignment = () => {
+    const id = new Date().getTime() - 1550000000000;
+    const assignment = { ...this.state, id: id };
     this.setState({
       name: "",
       estimatedTime: "",
       tasks: [],
       tmpTaskName: ""
     });
-    console.log(this.state);
+    const dbref = fire
+      .database()
+      .ref("/courses/" + this.props.courseId + "/assignments/" + id);
+    dbref.update(assignment);
+    // axios
+    //   .post("/courses/" + this.props.courseId + "/" + id + ".json", assignment)
+    //   .then(res => console.log(res))
+    //   .catch(res => console.log(res));
   };
 
   render() {

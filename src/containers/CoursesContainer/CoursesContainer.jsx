@@ -2,33 +2,44 @@ import React, { Component } from "react";
 import CourseTile from "../../components/CourseTile/CourseTile";
 import Aux from "../../hoc/Aux";
 import { withRouter } from "react-router-dom";
+import axios from "../../config/axios";
+import fire from "../../config/Fire";
 
 class CoursesContainer extends Component {
   state = {
-    courses: [
-      { courseName: "CSC 4351", progress: 10, assignmentCount: 2, id: 1 },
-      { courseName: "CSC 4103", progress: 40, assignmentCount: 3, id: 2 },
-      { courseName: "CSC 2610", progress: 75, assignmentCount: 4, id: 3 },
-      { courseName: "SOCL 2001", progress: 80, assignmentCount: 5, id: 4 },
-      { courseName: "EDCI 1001", progress: 33, assignmentCount: 3, id: 5 }
-    ]
+    courses: []
   };
 
+  componentDidMount() {
+    console.log(this.props.courses);
+  }
+
+  shouldComponentUpdate(next, newp) {
+    if (next.courses !== newp.courses) this.setState({ courses: next.courses });
+    return true;
+  }
+
   render() {
-    const courses = this.state.courses.map(course => {
-      return (
-        <CourseTile
-          courseName={course.courseName}
-          progress={course.progress}
-          assignmentCount={course.assignmentCount}
-          key={course.id}
-          courseSelected={() => {
-            this.props.courseSelected(course);
-            this.props.history.push("/course/" + course.id);
-          }}
-        />
-      );
-    });
+    console.log(this.props.courses);
+    let courses = null;
+    if (this.state.courses) {
+      courses = Object.keys(this.state.courses).map(course => {
+        return (
+          <CourseTile
+            courseName={this.state.courses[course].courseName}
+            progress={this.state.courses[course].progress}
+            assignmentCount={this.state.courses[course].assignmentCount}
+            key={this.state.courses[course].id}
+            courseSelected={() => {
+              this.props.courseSelected(this.state.courses[course]);
+              this.props.history.push(
+                "/course/" + this.state.courses[course].id
+              );
+            }}
+          />
+        );
+      });
+    }
 
     return (
       <div className="container ">

@@ -8,18 +8,14 @@ class CourseView extends Component {
   state = {
     course: null
   };
-  componentDidMount() {
-    console.log(this.props);
-    const { course } = this.props;
-    this.setState({ course });
-  }
+
   render() {
     return (
       <Aux>
         <div className="container-fluid">
           <div className="row course-view">
-            <CourseInfo course={this.state.course} />
-            <AssignmentsContainer course={this.state.course} />
+            <CourseInfo course={this.props.course} />
+            <AssignmentsContainer course={this.props.course} />
           </div>
         </div>
       </Aux>

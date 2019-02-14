@@ -8,6 +8,10 @@ const config = {
   storageBucket: "teachirp.appspot.com",
   messagingSenderId: "1011919166886"
 };
+
 const fire = firebase.initializeApp(config);
+
+const auth = firebase.auth();
+const db = firebase.database();
 
 export default fire;
