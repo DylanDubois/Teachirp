@@ -1,18 +1,31 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
 import "./App.scss";
 import Home from "./pages/Home";
 import NavBar from "./components/NavBar/NavBar";
 import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import CourseView from "./pages/CourseView";
+import fire from "./config/Fire";
 
 class App extends Component {
   state = {
-    selectedCourse: null
+    selectedCourse: null,
+    user: null
   };
+
+  componentDidMount() {
+    this.authListener();
+  }
 
   courseSelectedHandler = course => {
     this.setState({ selectedCourse: course });
+  };
+
+  authListener = () => {
+    fire.auth().onAuthStateChanged(user => {
+      console.log(user);
+      if (user) this.setState({ user });
+      else this.setState({ user: null });
+    });
   };
 
   render() {
