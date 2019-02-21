@@ -36,13 +36,13 @@ const welcomePage = props => {
       </div>
       <div className="container">
         <div className="row">
-          <div className="col-4">
+          <div className="col-sm-4 col-12">
             <h1>Feature 1</h1>
           </div>
-          <div className="col-4">
+          <div className="col-sm-4 col-12">
             <h1>Feature 2</h1>
           </div>
-          <div className="col-4">
+          <div className="col-sm-4 col-12">
             <h1>Feature 3</h1>
           </div>
         </div>

@@ -8,28 +8,28 @@ class AssignmentsContainer extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
+    if (this.props.course && this.props.course.assignments)
+      this.setState({ assignments: this.props.course.assignments });
   }
 
-  shouldComponentUpdate(next, newp) {
-    if (next.assignments !== newp.assignments)
-      this.setState({ assignments: next.assignments });
-    return true;
+  componentWillReceiveProps(next) {
+    console.log(next);
+    if (next.course.assignments !== this.state.assignments)
+      this.setState({ assignments: next.course.assignments });
   }
 
   render() {
     let assignments = <h5>No Assignments</h5>;
-    if (this.props.course.assignments) {
-      assignments = Object.keys(this.props.course.assignments).map(
-        assignment => {
-          return (
-            <Assignment
-              assignment={this.props.course.assignments[assignment]}
-              key={this.props.course.assignments[assignment].id}
-            />
-          );
-        }
-      );
+    console.log(this.state.assignments);
+    if (this.state.assignments) {
+      assignments = Object.keys(this.state.assignments).map(assignment => {
+        return (
+          <Assignment
+            assignment={this.state.assignments[assignment]}
+            key={this.state.assignments[assignment].id}
+          />
+        );
+      });
     }
     return (
       <div className="col-md-9 col-sm-12 p-0">

@@ -16,12 +16,9 @@ class App extends Component {
 
   componentDidMount() {
     this.authListener();
-    this.coursesListener();
   }
 
-  componentDidUpdate(nextprops) {
-    console.log("update", this.state.courses);
-  }
+  componentDidUpdate(nextprops) {}
 
   courseSelectedHandler = course => {
     this.setState({ selectedCourse: course });
@@ -29,14 +26,19 @@ class App extends Component {
 
   authListener = () => {
     fire.auth().onAuthStateChanged(user => {
-      console.log(user);
-      if (user) this.setState({ user });
-      else this.setState({ user: null });
+      if (user) {
+        const newUser = { uid: user.uid, displayName: user.displayName };
+        this.setState({ user: newUser });
+        const dbref = fire.database().ref("/users/" + user.uid);
+        dbref.update(newUser);
+        this.coursesListener();
+      } else this.setState({ user: null });
     });
   };
 
   coursesListener = () => {
-    const dbref = fire.database().ref("/courses/");
+    const uid = this.state.user ? this.state.user.uid : null;
+    const dbref = fire.database().ref("users/" + uid + "/courses/");
     dbref.on("value", snap => {
       this.setState({ courses: snap.val() });
     });
@@ -68,13 +70,19 @@ class App extends Component {
                 <Home
                   courseSelected={this.courseSelectedHandler}
                   courses={this.state.courses}
+                  user={this.state.user}
                 />
               )}
             />
             {this.state.selectedCourse && (
               <Route
                 path="/course"
-                render={() => <CourseView course={this.state.selectedCourse} />}
+                render={() => (
+                  <CourseView
+                    course={this.state.selectedCourse}
+                    uid={this.state.user.uid}
+                  />
+                )}
               />
             )}
           </Switch>

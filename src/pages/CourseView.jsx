@@ -3,10 +3,26 @@ import Aux from "../hoc/Aux";
 import CourseInfo from "../components/CourseInfo/CourseInfo";
 import AssignmentsContainer from "../containers/AssignmentsContainer/AssignmentsContainer";
 import "./CourseView.scss";
+import fire from "../config/Fire";
 
 class CourseView extends Component {
   state = {
     course: null
+  };
+
+  componentDidMount() {
+    this.coursesListener();
+    this.setState({ course: this.props.course });
+  }
+
+  coursesListener = () => {
+    const uid = this.props.uid ? this.props.uid : null;
+    const dbref = fire
+      .database()
+      .ref("users/" + uid + "/courses/" + this.props.course.id);
+    dbref.on("value", snap => {
+      this.setState({ course: snap.val() });
+    });
   };
 
   render() {
@@ -14,8 +30,8 @@ class CourseView extends Component {
       <Aux>
         <div className="container-fluid">
           <div className="row course-view">
-            <CourseInfo course={this.props.course} />
-            <AssignmentsContainer course={this.props.course} />
+            <CourseInfo course={this.state.course} uid={this.props.uid} />
+            <AssignmentsContainer course={this.state.course} />
           </div>
         </div>
       </Aux>

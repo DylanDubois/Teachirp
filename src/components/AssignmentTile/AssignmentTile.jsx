@@ -27,7 +27,7 @@ class AssignmentTile extends Component {
           </div>
           <div className="card-body">
             <h5 className="card-title text-white">
-              {this.state.tasks.length} Tasks
+              {this.state.tasks ? this.state.tasks.length : 0} Tasks
             </h5>
             <div className="progress">
               <div

@@ -3,7 +3,6 @@ import "./NavBar.scss";
 import { Link } from "react-router-dom";
 
 const navBar = props => {
-  console.log(props.user);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-primary header">
       <Link className="navbar-brand text-primary brand" to="/">
@@ -28,15 +27,15 @@ const navBar = props => {
             </Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link" to="/dashboard">
+              Dashboard
+            </Link>
+          </li>
+          {/* <li className="nav-item">
             <Link className="nav-link" to="/add-course">
               Add Course
             </Link>
-          </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/history">
-              History
-            </Link>
-          </li>
+          </li> */}
           <li className="nav-item dropdown">
             <Link
               className="nav-link dropdown-toggle"

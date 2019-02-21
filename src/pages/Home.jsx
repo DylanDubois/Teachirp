@@ -3,6 +3,7 @@ import Aux from "../hoc/Aux";
 import CoursesContainer from "../containers/CoursesContainer/CoursesContainer";
 import "./Home.scss";
 import { Route } from "react-router-dom";
+import AddCourseModal from "../components/AddCourse/AddCourse";
 
 class Home extends Component {
   state = {
@@ -14,7 +15,6 @@ class Home extends Component {
 
   componentDidMount() {
     this.setState({ courses: this.props.courses });
-    console.log("home mounted");
   }
 
   shouldComponentUpdate(next, newp) {
@@ -23,7 +23,7 @@ class Home extends Component {
   }
 
   render() {
-    console.log("home", this.state.courses);
+    const userId = this.props.user ? this.props.user.uid : null;
     return (
       <Aux>
         <div className="jumbotron gradient jumbotron-fluid bg-dark text-white border-bottom border-primary">
@@ -33,10 +33,11 @@ class Home extends Component {
               <span className="text-primary">{this.state.user.name}</span>!
             </h1>
             <p className="lead">See all that there is to do!</p>
+            <AddCourseModal uid={userId} />
           </div>
         </div>
         <Route
-          path="/"
+          path="/dashboard"
           exact
           render={() => (
             <CoursesContainer

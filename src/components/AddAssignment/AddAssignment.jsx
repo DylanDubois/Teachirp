@@ -48,7 +48,14 @@ class AddAssignment extends Component {
     });
     const dbref = fire
       .database()
-      .ref("/courses/" + this.props.courseId + "/assignments/" + id);
+      .ref(
+        "users/" +
+          this.props.uid +
+          "/courses/" +
+          this.props.courseId +
+          "/assignments/" +
+          id
+      );
     dbref.update(assignment);
     // axios
     //   .post("/courses/" + this.props.courseId + "/" + id + ".json", assignment)
