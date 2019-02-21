@@ -1,0 +1,10 @@
+// float right desktop only
+.float-r-dt {
+  float: right;
+}
+
+@media (max-width: 500px) {
+  .float-r-dt {
+    float: none;
+  }
+}

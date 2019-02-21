@@ -17,5 +17,9 @@ $brand-font: "Lobster", cursive !important;
   font-family: $primary-font;
 }
 
+.brand {
+  font-family: $brand-font;
+}
+
 /* import bootstrap to set changes */
 @import "~bootstrap/scss/bootstrap";

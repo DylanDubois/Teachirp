@@ -2,7 +2,8 @@ import React from "react";
 import "./NavBar.scss";
 import { Link } from "react-router-dom";
 
-const navBar = () => {
+const navBar = props => {
+  console.log(props.user);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-primary header">
       <Link className="navbar-brand text-primary brand" to="/">
@@ -65,6 +66,44 @@ const navBar = () => {
             </div>
           </li>
         </ul>
+        {props.user && (
+          <div className="profile-dropdown">
+            <ul className="navbar-nav float-r-dt">
+              <li className="nav-item dropdown">
+                <Link
+                  className="nav-link dropdown-toggle"
+                  to="/"
+                  id="navbarDropdownMenuLink"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  data-target="#profiledropdown"
+                >
+                  {props.user.displayName}
+                </Link>
+                <div
+                  className="dropdown-menu bg-dark"
+                  aria-labelledby="navbarDropdownMenuLink"
+                  id="profiledropdown"
+                >
+                  <Link className="dropdown-item" to="/">
+                    Action
+                  </Link>
+                  <Link className="dropdown-item" to="/">
+                    Another action
+                  </Link>
+                  <Link
+                    className="dropdown-item"
+                    to="/"
+                    onClick={props.signOut}
+                  >
+                    Sign-Out
+                  </Link>
+                </div>
+              </li>
+            </ul>
+          </div>
+        )}
       </div>
     </nav>
   );

@@ -14,6 +14,7 @@ class Home extends Component {
 
   componentDidMount() {
     this.setState({ courses: this.props.courses });
+    console.log("home mounted");
   }
 
   shouldComponentUpdate(next, newp) {
