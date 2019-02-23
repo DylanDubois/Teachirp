@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/Teachirp/precache-manifest.26ba50b34d629e4d60401a8c8c520c15.js"
+  "/Teachirp/precache-manifest.2583dd21be068e1f6cf39f5c673252ae.js"
 );
 
 workbox.clientsClaim();
