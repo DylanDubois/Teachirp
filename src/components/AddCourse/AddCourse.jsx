@@ -34,7 +34,7 @@ class AddCourse extends Component {
       <Aux>
         <button
           type="button"
-          className="btn btn-outline-primary"
+          className="btn btn-outline-primary btn-lg"
           data-toggle="modal"
           data-target="#exampleModal"
         >

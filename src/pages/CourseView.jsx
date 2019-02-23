@@ -7,7 +7,9 @@ import fire from "../config/Fire";
 
 class CourseView extends Component {
   state = {
-    course: null
+    course: {
+      id: 0
+    }
   };
 
   dbref = null;
@@ -47,7 +49,7 @@ class CourseView extends Component {
     }
     this.setState({
       course: course,
-      progress: (completeTasks / numTasks) * 100
+      progress: Math.round((completeTasks / numTasks) * 100)
     });
   }
 
@@ -61,7 +63,10 @@ class CourseView extends Component {
               uid={this.props.uid}
               progress={this.state.progress}
             />
-            <AssignmentsContainer course={this.state.course} />
+            <AssignmentsContainer
+              course={this.state.course}
+              uid={this.props.uid}
+            />
           </div>
         </div>
       </Aux>

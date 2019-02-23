@@ -1,10 +1,15 @@
 import React, { Component } from "react";
 import Assignment from "../../components/AssignmentTile/AssignmentTile";
 import "./AssignmentsContainer.scss";
+import AssignmentView from "../../components/AssignmentView/AssignmentView";
+import $ from "jquery";
 
 class AssignmentsContainer extends Component {
   state = {
-    assignments: []
+    assignments: [],
+    selectedAssignment: {
+      name: "Assignment"
+    }
   };
 
   componentDidMount() {
@@ -17,6 +22,11 @@ class AssignmentsContainer extends Component {
       this.setState({ assignments: next.course.assignments });
   }
 
+  assignmentSelected = assignment => {
+    this.setState({ selectedAssignment: assignment });
+    $("#assignmentModal").modal("show");
+  };
+
   render() {
     let assignments = <h5>No Assignments</h5>;
     if (this.state.assignments) {
@@ -25,6 +35,9 @@ class AssignmentsContainer extends Component {
           <Assignment
             assignment={this.state.assignments[assignment]}
             key={this.state.assignments[assignment].id}
+            assignmentSelected={() =>
+              this.assignmentSelected(this.state.assignments[assignment])
+            }
           />
         );
       });
@@ -39,6 +52,11 @@ class AssignmentsContainer extends Component {
           </div>
           <div className="row">{assignments}</div>
         </div>
+        <AssignmentView
+          assignment={this.state.selectedAssignment}
+          uid={this.props.uid}
+          courseId={this.props.course.id}
+        />
       </div>
     );
   }
