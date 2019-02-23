@@ -39,7 +39,7 @@ class AddAssignment extends Component {
 
   submitAssignment = () => {
     const id = new Date().getTime() - 1550000000000;
-    const assignment = { ...this.state, id: id };
+    const assignment = { ...this.state, id: id, progress: 0 };
     this.setState({
       name: "",
       estimatedTime: "",

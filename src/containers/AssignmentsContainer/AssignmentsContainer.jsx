@@ -13,14 +13,12 @@ class AssignmentsContainer extends Component {
   }
 
   componentWillReceiveProps(next) {
-    console.log(next);
     if (next.course.assignments !== this.state.assignments)
       this.setState({ assignments: next.course.assignments });
   }
 
   render() {
     let assignments = <h5>No Assignments</h5>;
-    console.log(this.state.assignments);
     if (this.state.assignments) {
       assignments = Object.keys(this.state.assignments).map(assignment => {
         return (

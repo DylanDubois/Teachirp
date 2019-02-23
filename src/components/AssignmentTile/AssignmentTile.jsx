@@ -3,18 +3,26 @@ import React, { Component } from "react";
 class AssignmentTile extends Component {
   state = {
     name: "Homework 1",
-    tasks: ["wow", "hey"],
-    progress: 50,
+    tasks: [],
+    progress: 0,
     id: 1
   };
 
   componentDidMount() {
     const assignment = this.props.assignment;
-    console.log(assignment);
+    let progress = 0;
+    if (this.props.assignment.tasks) {
+      progress =
+        (this.props.assignment.tasks.filter(task => {
+          return task.complete === true;
+        }).length /
+          this.props.assignment.tasks.length) *
+        100;
+    }
     this.setState({
       name: assignment.name,
       tasks: assignment.tasks,
-      progress: assignment.progress,
+      progress: progress,
       id: assignment.id
     });
   }
