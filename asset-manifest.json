@@ -1,15 +1,15 @@
 {
-  "main.css": "/Teachirp/static/css/main.ae802caf.chunk.css",
-  "main.js": "/Teachirp/static/js/main.69f61b92.chunk.js",
-  "main.js.map": "/Teachirp/static/js/main.69f61b92.chunk.js.map",
+  "main.css": "/Teachirp/static/css/main.59b4b427.chunk.css",
+  "main.js": "/Teachirp/static/js/main.70a4f5ac.chunk.js",
+  "main.js.map": "/Teachirp/static/js/main.70a4f5ac.chunk.js.map",
   "static/css/1.c4f664a6.chunk.css": "/Teachirp/static/css/1.c4f664a6.chunk.css",
-  "static/js/1.7e8b03ef.chunk.js": "/Teachirp/static/js/1.7e8b03ef.chunk.js",
-  "static/js/1.7e8b03ef.chunk.js.map": "/Teachirp/static/js/1.7e8b03ef.chunk.js.map",
+  "static/js/1.5b26cdd5.chunk.js": "/Teachirp/static/js/1.5b26cdd5.chunk.js",
+  "static/js/1.5b26cdd5.chunk.js.map": "/Teachirp/static/js/1.5b26cdd5.chunk.js.map",
   "runtime~main.js": "/Teachirp/static/js/runtime~main.4797d12f.js",
   "runtime~main.js.map": "/Teachirp/static/js/runtime~main.4797d12f.js.map",
+  "static/css/main.59b4b427.chunk.css.map": "/Teachirp/static/css/main.59b4b427.chunk.css.map",
   "static/css/1.c4f664a6.chunk.css.map": "/Teachirp/static/css/1.c4f664a6.chunk.css.map",
-  "static/css/main.ae802caf.chunk.css.map": "/Teachirp/static/css/main.ae802caf.chunk.css.map",
   "index.html": "/Teachirp/index.html",
-  "precache-manifest.29bf705fb1b08ecbef1201d63d78f8ea.js": "/Teachirp/precache-manifest.29bf705fb1b08ecbef1201d63d78f8ea.js",
+  "precache-manifest.ae882a645705ecaa1545a0c7ac5ebf2f.js": "/Teachirp/precache-manifest.ae882a645705ecaa1545a0c7ac5ebf2f.js",
   "service-worker.js": "/Teachirp/service-worker.js"
 }
