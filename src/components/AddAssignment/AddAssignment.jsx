@@ -24,6 +24,12 @@ class AddAssignment extends Component {
     this.setState({ tmpTaskName: event.target.value });
   };
 
+  updateTask = task => {
+    const tasks = this.state.tasks;
+    tasks[task].complete = !tasks[task].complete;
+    this.setState({ tasks });
+  };
+
   handleTaskAddition = () => {
     if (!this.state.tmpTaskName) return;
     const timeId = new Date().getTime() - 1550000000000;
@@ -154,7 +160,10 @@ class AddAssignment extends Component {
                     </button>
                   </div>
                 </form>
-                <TaskList tasks={this.state.tasks} />
+                <TaskList
+                  tasks={this.state.tasks}
+                  updateTask={this.updateTask}
+                />
               </div>
               <div className="modal-footer text-center">
                 <button

@@ -66,8 +66,8 @@ const navBar = props => {
           </li>
         </ul>
         {props.user && (
-          <div className="profile-dropdown">
-            <ul className="navbar-nav float-r-dt">
+          <div className="profile-dropdown ml-auto">
+            <ul className="navbar-nav">
               <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"

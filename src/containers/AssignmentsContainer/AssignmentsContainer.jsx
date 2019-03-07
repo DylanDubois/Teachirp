@@ -45,7 +45,7 @@ class AssignmentsContainer extends Component {
     return (
       <div className="col-md-9 col-sm-12 p-0">
         <div className="container-fluid">
-          <div className="row gradient mb-3">
+          <div className="row bg-dark gradient mb-3">
             <h1 className="display-4 text-primary pt-5 pb-5 header">
               Assignments
             </h1>
