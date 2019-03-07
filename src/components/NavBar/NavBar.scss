@@ -24,3 +24,14 @@ a:hover {
 .brand {
   font-family: $brand-font;
 }
+
+.profile-dropdown {
+  //width: 100%;
+  margin: 0 !important;
+}
+
+@media (min-width: 500px) {
+  .profile-dropdown {
+    //width: 75%;
+  }
+}

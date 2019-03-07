@@ -3,39 +3,47 @@ import Aux from "../hoc/Aux";
 import CoursesContainer from "../containers/CoursesContainer/CoursesContainer";
 import "./Home.scss";
 import { Route } from "react-router-dom";
+import AddCourseModal from "../components/AddCourse/AddCourse";
 
 class Home extends Component {
   state = {
     user: {
-      name: "Dylan"
+      displayName: "Dylan"
     },
     courses: []
   };
 
   componentDidMount() {
-    this.setState({ courses: this.props.courses });
+    console.log(this.props);
+    this.setState({
+      courses: this.props.courses
+    });
   }
 
   shouldComponentUpdate(next, newp) {
     if (next.courses !== newp.courses) this.setState({ courses: next.courses });
+    if (next.user !== newp.user) this.setState({ user: next.user });
     return true;
   }
 
   render() {
-    console.log("home", this.state.courses);
+    const userId = this.props.user ? this.props.user.uid : null;
+    const userName = this.state.user
+      ? this.state.user.displayName.split(" ")[0]
+      : "  ";
     return (
       <Aux>
         <div className="jumbotron gradient jumbotron-fluid bg-dark text-white border-bottom border-primary">
           <div className="container">
             <h1 className="display-4 header">
-              Welcome,{" "}
-              <span className="text-primary">{this.state.user.name}</span>!
+              Welcome, <span className="text-primary">{userName}</span>!
             </h1>
             <p className="lead">See all that there is to do!</p>
+            <AddCourseModal uid={userId} />
           </div>
         </div>
         <Route
-          path="/"
+          path="/dashboard"
           exact
           render={() => (
             <CoursesContainer

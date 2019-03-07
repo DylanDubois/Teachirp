@@ -10,9 +10,7 @@ class CoursesContainer extends Component {
     courses: []
   };
 
-  componentDidMount() {
-    console.log(this.props.courses);
-  }
+  componentDidMount() {}
 
   shouldComponentUpdate(next, newp) {
     if (next.courses !== newp.courses) this.setState({ courses: next.courses });
@@ -20,16 +18,17 @@ class CoursesContainer extends Component {
   }
 
   render() {
-    console.log(this.props.courses);
     let courses = null;
     if (this.state.courses) {
       courses = Object.keys(this.state.courses).map(course => {
+        const assignmentCount = this.state.courses[course].assignments
+          ? Object.keys(this.state.courses[course].assignments).length
+          : 0;
         return (
           <CourseTile
-            courseName={this.state.courses[course].courseName}
-            progress={this.state.courses[course].progress}
-            assignmentCount={this.state.courses[course].assignmentCount}
+            courseName={this.state.courses[course].name}
             key={this.state.courses[course].id}
+            assignmentCount={assignmentCount}
             courseSelected={() => {
               this.props.courseSelected(this.state.courses[course]);
               this.props.history.push(

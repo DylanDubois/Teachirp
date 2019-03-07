@@ -6,3 +6,9 @@
     deepskyblue
   ) !important;
 }
+
+@media (max-width: 500px) {
+  .gradient {
+    background-image: none;
+  }
+}

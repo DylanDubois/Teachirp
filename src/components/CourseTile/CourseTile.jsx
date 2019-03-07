@@ -12,9 +12,10 @@ const courseTile = props => {
         </div>
         <div className="card-body">
           <h5 className="card-title text-white">
-            {props.assignmentCount} Assignments
+            {props.assignmentCount}
+            {props.assignmentCount !== 1 ? " Assignments" : " Assignment"}
           </h5>
-          <div className="progress">
+          {/* <div className="progress">
             <div
               className="progress-bar-animated progress-bar-striped bg-primary"
               role="progressbar"
@@ -23,7 +24,7 @@ const courseTile = props => {
               aria-valuemax="100"
               style={{ width: progress + "%" }}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

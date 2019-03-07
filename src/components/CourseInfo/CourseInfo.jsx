@@ -9,11 +9,9 @@ const courseInfo = props => {
     <div className="col-md-3 col-sm-12 bg-dark pt-5 text-center pt-sm-0">
       {course && (
         <Aux>
-          <h1 className="text-primary display-4 mt-5 header">
-            {course.courseName}
-          </h1>
-          <ProgressBarRound progress={course.progress} />
-          <AddModal courseId={course.id} />
+          <h1 className="text-primary display-4 mt-5 header">{course.name}</h1>
+          <ProgressBarRound progress={props.progress} />
+          <AddModal courseId={course.id} uid={props.uid} />
         </Aux>
       )}
     </div>

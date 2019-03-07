@@ -1,16 +1,18 @@
 import React, { Component } from "react";
 import Aux from "../../hoc/Aux";
 import TaskList from "../TaskList/TaskList";
-import axios from "../../config/axios";
 import fire from "../../config/Fire";
 
-class AddAssignment extends Component {
+class AssignmentTile extends Component {
   state = {
-    name: "",
-    estimatedTime: "",
+    name: "Assignment",
     tasks: [],
     tmpTaskName: ""
   };
+
+  componentWillReceiveProps(next) {
+    if (next.assignment !== this.state) this.setState({ ...next.assignment });
+  }
 
   handleNameChange = event => {
     this.setState({ name: event.target.value });
@@ -22,12 +24,6 @@ class AddAssignment extends Component {
 
   handleTasksChange = event => {
     this.setState({ tmpTaskName: event.target.value });
-  };
-
-  updateTask = task => {
-    const tasks = this.state.tasks;
-    tasks[task].complete = !tasks[task].complete;
-    this.setState({ tasks });
   };
 
   handleTaskAddition = () => {
@@ -43,9 +39,14 @@ class AddAssignment extends Component {
     event.preventDefault();
   };
 
+  updateTask = task => {
+    const tasks = this.state.tasks;
+    tasks[task].complete = !tasks[task].complete;
+    this.setState({ tasks });
+  };
+
   submitAssignment = () => {
-    const id = new Date().getTime() - 1550000000000;
-    const assignment = { ...this.state, id: id, progress: 0 };
+    const assignment = { ...this.state };
     this.setState({
       name: "",
       estimatedTime: "",
@@ -60,7 +61,7 @@ class AddAssignment extends Component {
           "/courses/" +
           this.props.courseId +
           "/assignments/" +
-          id
+          this.state.id
       );
     dbref.update(assignment);
     // axios
@@ -72,18 +73,9 @@ class AddAssignment extends Component {
   render() {
     return (
       <Aux>
-        <button
-          type="button"
-          className="btn btn-outline-primary mt-5"
-          data-toggle="modal"
-          data-target="#exampleModal"
-        >
-          Add Assignment
-        </button>
-
         <div
           className="modal fade"
-          id="exampleModal"
+          id="assignmentModal"
           tabIndex="-1"
           role="dialog"
           aria-labelledby="exampleModalLabel"
@@ -96,7 +88,7 @@ class AddAssignment extends Component {
                   className="modal-title text-primary text-center header"
                   id="exampleModalLabel"
                 >
-                  Add Assignment
+                  {this.state.name}
                 </h4>
                 <button
                   type="button"
@@ -119,27 +111,6 @@ class AddAssignment extends Component {
               </div>
               <div className="modal-body">
                 <form className="row">
-                  <div className="form-group col-12">
-                    <input
-                      type="text"
-                      className="form-control"
-                      id="name"
-                      aria-describedby="name"
-                      placeholder="Assignment name"
-                      value={this.state.name}
-                      onChange={this.handleNameChange}
-                    />
-                  </div>
-                  <div className="form-group col-12">
-                    <input
-                      type="number"
-                      className="form-control"
-                      id="effort"
-                      placeholder="Estimated time to complete"
-                      value={this.state.estimatedTime}
-                      onChange={this.handleEstimationChange}
-                    />
-                  </div>
                   <div className="col-12 row pr-0">
                     <div className="form-group col-10 m-0">
                       <input
@@ -172,7 +143,7 @@ class AddAssignment extends Component {
                   data-dismiss="modal"
                   onClick={this.submitAssignment}
                 >
-                  Add
+                  Save
                 </button>
               </div>
             </div>
@@ -183,4 +154,4 @@ class AddAssignment extends Component {
   }
 }
 
-export default AddAssignment;
+export default AssignmentTile;

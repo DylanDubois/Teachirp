@@ -3,31 +3,63 @@ import React, { Component } from "react";
 class AssignmentTile extends Component {
   state = {
     name: "Homework 1",
-    tasks: ["wow", "hey"],
-    progress: 50,
+    tasks: [],
+    progress: 0,
     id: 1
   };
 
   componentDidMount() {
     const assignment = this.props.assignment;
-    console.log(assignment);
+    let progress = 0;
+    if (this.props.assignment.tasks) {
+      progress =
+        (this.props.assignment.tasks.filter(task => {
+          return task.complete === true;
+        }).length /
+          this.props.assignment.tasks.length) *
+        100;
+    }
     this.setState({
       name: assignment.name,
       tasks: assignment.tasks,
-      progress: assignment.progress,
+      progress: progress,
       id: assignment.id
     });
+  }
+
+  componentWillReceiveProps(next) {
+    if (next.assignment !== this.state) {
+      const assignment = next.assignment;
+      let progress = 0;
+      if (next.assignment.tasks) {
+        progress =
+          (next.assignment.tasks.filter(task => {
+            return task.complete === true;
+          }).length /
+            next.assignment.tasks.length) *
+          100;
+      }
+      this.setState({
+        name: assignment.name,
+        tasks: assignment.tasks,
+        progress: progress,
+        id: assignment.id
+      });
+    }
   }
   render() {
     return (
       <div className="col-md-4 col-sm-12 mb-4">
-        <div className="card bg-dark col-12 course">
+        <div
+          className="card bg-dark col-12 course"
+          onClick={this.props.assignmentSelected}
+        >
           <div className="card-header text-primary border-bottom border-white header">
             <h4>{this.state.name}</h4>
           </div>
           <div className="card-body">
             <h5 className="card-title text-white">
-              {this.state.tasks.length} Tasks
+              {this.state.tasks ? this.state.tasks.length : 0} Tasks
             </h5>
             <div className="progress">
               <div

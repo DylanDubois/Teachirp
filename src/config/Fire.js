@@ -21,4 +21,12 @@ export const signInWithGoogle = () => {
     .catch(res => {});
 };
 
+export const signOut = () => {
+  firebase
+    .auth()
+    .signOut()
+    .then(res => {})
+    .catch(res => {});
+};
+
 export default fire;
